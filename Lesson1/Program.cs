@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lesson1
 {
@@ -10,36 +6,35 @@ namespace Lesson1
     {
         static void Main(string[] args)
         {
-            int number, high, low, health, userinput;
-            health=5;
-          Random rand=new Random();
-            number=rand.Next(0, 101);
-            low=rand.Next(number-10, number);
-            high=rand.Next(number+1, number+10);
-            Console.WriteLine($"I Think number! Find it. the number higher than {low} and lower than {high}");
-            Console.WriteLine($"You have {health} chance");
-            while (health-->0)
-            {
-                Console.WriteLine("Your number : ");
-                userinput=Convert.ToInt32(Console.ReadLine());
-                if (userinput==number)
-                {
-                    Console.WriteLine("Correct !!!");
-                    break;
-                } else
-                {
-                    Console.WriteLine("Wrong! try again");
-                     
-                }
-                if (health==0)
-                {
-                    Console.WriteLine($"The correct number is {number}");
+         
+            Random rand= new Random();
+            float health1= rand.Next(90, 150);
+            float health2= rand.Next(80, 130);
+            int damage1= rand.Next(10, 30);
+            int damage2= rand.Next(20, 40);
+            int armor1= rand.Next(30, 50);
+            int armor2=rand.Next(25, 55);
 
-                }
+            Console.WriteLine($"Gladiator 1: health={health1}, damage={damage1}, armor={armor1},");
+            Console.WriteLine($"Gladiator 2: health={health2}, damage={damage2}, armor={armor2},");
+
+            while (health1 > 0 && health2 > 0)
+            {
+                health1 -= Convert.ToSingle( rand.Next(0, damage2+1))/100 * armor1;
+                health2 -= Convert.ToSingle( rand.Next(0, damage1+1))/100 * armor2;
+
+                Console.WriteLine($"Gladiator 1: {health1} health.");
+                Console.WriteLine($"Gladiator 2: {health2} health.");
+            }
+            if (health1 <=0 && health2 <=0)
+            {
+                Console.WriteLine("Draw !");
+            } else if (health1 < health2) {
+                Console.WriteLine("Gladiator 2 win!");
+            } else if (health1 > health2) {
+                Console.WriteLine("Gladiator 1 win!");
 
             }
-
-     
         }
     }
 }
